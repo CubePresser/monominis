@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { User, Post as PostT } from '../types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faComments } from '@fortawesome/free-regular-svg-icons'
+import { faShareNodes, faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 
 type PostProps = {
   author?: User;
@@ -21,13 +24,11 @@ const Post: React.FC<PostProps> = ({
       </header>
       <p></p>
       <footer>
-        {/* Comments, Share, Views */}
-        <button className="comment">Comments</button>
-        <button className="share">Share</button>
+        <button className="icon like"><FontAwesomeIcon icon={faThumbsUp} /></button><label>{post.reactions.likes}</label>
+        <button className="icon dislike"><FontAwesomeIcon icon={faThumbsDown} /></button><label>{post.reactions.dislikes}</label>
+        <button className="icon comment"><FontAwesomeIcon icon={faComments} /></button>
+        <button className="icon share"><FontAwesomeIcon icon={faShareNodes} /></button>
         <p className="views">{post.views} views</p>
-        {/* Likes and Dislikes + action */}
-        <button className="like">👍</button><label>{post.reactions.likes}</label>
-        <button className="dislike">👎</button><label>{post.reactions.dislikes}</label>
       </footer>
     </article>
   )
