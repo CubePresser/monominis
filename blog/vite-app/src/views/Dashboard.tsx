@@ -1,30 +1,43 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { User } from '../types';
-import { getUsers } from '../data/api';
+import React, { useEffect, useCallback, useContext } from 'react';
+import { PostContext } from '../context/PostContext';
+import api from '../data/api';
+import Post from '../components/Post';
 
 const Dashboard: React.FC = () => {
-  const [users, setUsers] = useState<User[]>([]);
+  const [postState, setPostState] = useContext(PostContext);
 
-  const fetchUsers = useCallback(async () => {
-    const result = await getUsers();
-    setUsers(result.data);
-  }, []);
+  const fetchPosts = useCallback(async () => {
+    const {
+      data: posts,
+      skip,
+      limit
+    } = await api.getPosts({ skip: postState.skip });
+    setPostState({
+      posts: [...postState.posts, ...posts],
+      skip: skip + limit,
+    })
+  }, [postState, setPostState]);
 
-  // useEffect(() => {
-  //   fetchUsers();
-  // }, []);
+  useEffect(() => {
+    fetchPosts();
+  }, [])
 
   return (
-    <ul style={{ listStyle: 'none' }}>
-      {
-        users.map(user => (
-          <li key={user.id}>
-            <h1>{user.username}</h1>
-            <h2>{user.firstName} {user.lastName}</h2>
-          </li>
-        ))
-      }
-    </ul>
+    <section className="Dashboard">
+      <ul className="post-list" style={{ listStyle: 'none' }}>
+        {
+          postState.posts.map(post => (
+            <li key={post.id}>
+              <Post post={post}/>
+            </li>
+          ))
+        }
+      </ul>
+      <button className="secondary" onClick={(event) => {
+        fetchPosts();
+        event.preventDefault();
+      }}>MORE!</button>
+    </section>
   )
 };
 

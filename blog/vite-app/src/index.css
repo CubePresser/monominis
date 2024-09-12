@@ -1,4 +1,74 @@
 :root {
+  font-family: "Poppins", system-ui;
+  font-weight: 400;
+  font-style: normal;
+
+  line-height: 1.5;
+
+  --light-blue: #D2E3FC;
+  --med-blue: #4285F4;
+  --blue: #174EA6;
+  --light-grey: #F1F3F4;
+  --grey: #9AA0A6;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button {
+  user-select: none;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+
+  cursor: pointer;
+
+  padding: 0.5em 1em;
+
+  border-radius: 8px;
+  border: 1px solid transparent;
+
+  color: white;
+  background-color: var(--med-blue);
+
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+button:hover {
+  background-color: var(--blue);
+}
+button:active {
+  border: 1px solid white;
+  box-shadow: 0px 6px 10px -3px rgba(0,0,0,0.1);
+}
+button.secondary {
+  border: 1px solid var(--grey);
+
+  color: var(--med-blue);
+  background-color: white;
+}
+button.secondary:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  background-color: var(--light-grey);
+}
+button.secondary:active {
+  border-color: var(--blue);
+  color: var(--blue);
+  background-color: var(--light-blue);
+}
+
+menu {
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  gap: 1em;
+}
+
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -65,4 +135,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
