@@ -3,7 +3,7 @@ import { PostProvider } from './context/PostContext';
 import Dashboard from './views/Dashboard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCube } from '@fortawesome/free-solid-svg-icons';
-import './App.css'
+import './App.css';
 
 const App: React.FC = () => {
   return (
@@ -19,6 +19,7 @@ const App: React.FC = () => {
         </menu>
       </header>
       <main>
+        <h3 id="todo">TODO: Implement comments modal</h3>
         <PostProvider>
           <Dashboard />
         </PostProvider>

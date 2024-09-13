@@ -1,3 +1,7 @@
+#todo {
+  color: var(--med-blue);
+}
+
 .App > header {
   position: sticky;
   top: 0px;
@@ -7,7 +11,7 @@
   justify-content: space-between;
   align-items: center;
 
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(12px);
   padding: 8px 32px;
 
@@ -81,4 +85,20 @@ button.icon, button.icon:hover, button.icon:active {
   padding: 0.25em 0.5em;
 
   font-size: large;
+}
+
+.Modal {
+  place-self: center;
+  max-width: 640px;
+  min-width: 320px;
+  height: 500px;
+  margin: 64px;
+
+  border: 1px solid transparent;
+  border-radius: 8px;
+}
+
+.Modal::backdrop {
+  backdrop-filter: blur(2px);
+  background-color: rgba(0, 0, 0, 0.5)
 }
