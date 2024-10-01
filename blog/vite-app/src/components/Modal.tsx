@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { useDisableBodyScroll } from "../hooks";
 
-type ModalProps = {
+export type ModalProps = {
   open: boolean;
   onClose: () => void;
 } & React.PropsWithChildren;

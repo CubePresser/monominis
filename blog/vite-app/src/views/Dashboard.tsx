@@ -3,7 +3,7 @@ import { PostContext } from '../context/PostContext';
 import api from '../data/api';
 import Post from '../components/Post';
 import { Post as TPost } from '../types';
-import Modal from '../components/Modal';
+import CommentsModal from '../components/CommentsModal';
 
 const Dashboard: React.FC = () => {
   const [postState, setPostState] = useContext(PostContext);
@@ -38,17 +38,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <section className="Dashboard">
-      <Modal open={openComments} onClose={handleCloseComments}>
-        {
-          // TODO: Actually implement a comments component
-          activePost ? (
-            <>
-              <h2>{activePost.title}</h2>
-              <p>{activePost.body}</p>
-            </>
-          ) : null
-        }
-      </Modal>
+      <CommentsModal currPost={activePost} open={openComments} onClose={handleCloseComments}/>
       <ul className="post-list" style={{ listStyle: 'none' }}>
         {
           postState.posts.map(post => (

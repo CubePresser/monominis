@@ -1,4 +1,4 @@
-import { User, Post } from '../types';
+import { User, Post, Comment } from '../types';
 const dummyUrl = 'https://dummyjson.com/';
 
 type PageResponse<T> = {
@@ -47,6 +47,18 @@ export default {
         data: posts,
         ...other,
       }));
+  },
+
+  getPostComments: async (postId: number, {limit = 10, skip = 0 }: RequestParams = {}): Promise<PageResponse<Comment[]>> => {
+    const url = dummyUrl + `comments/post/${postId}?`
+      + limSkp(limit, skip);
+    
+      return fetch(url)
+        .then(res => res.json())
+        .then(({comments, ...other}) => ({
+          data: comments,
+          ...other,
+        }));
   }
 }
 
